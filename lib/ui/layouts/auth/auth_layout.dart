@@ -1,6 +1,7 @@
 // Master page para la parte de la autenticacion
 import 'package:admin_dashboard/ui/layouts/auth/widgets/background_twitter.dart';
 import 'package:admin_dashboard/ui/layouts/auth/widgets/custom_title.dart';
+import 'package:admin_dashboard/ui/layouts/auth/widgets/links_bar.dart';
 import 'package:flutter/material.dart';
 
 class AuthLayout extends StatelessWidget {
@@ -10,11 +11,14 @@ class AuthLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: ListView(children: [
+        body: ListView(
+        physics: ClampingScrollPhysics(),
+        children: [
       // Desktop
       _DesktopBody( child: child),
       // mobile
       // linksbar
+      LinksBar(),
     ]));
   }
 }
@@ -29,7 +33,7 @@ class _DesktopBody extends StatelessWidget {
     return Container(
         // this is necessary because is a child of a list view
         width: size.width,
-        height: size.height,
+        height: size.height * 0.95,
         color: Colors.red,
         child: Row(
           children: [
