@@ -3,6 +3,7 @@
 import 'package:admin_dashboard/router/router.dart';
 import 'package:admin_dashboard/ui/buttons/custom_outlined_button.dart';
 import 'package:admin_dashboard/ui/buttons/link_text.dart';
+import 'package:admin_dashboard/ui/inputs/custom_inputs.dart';
 import 'package:flutter/material.dart';
 
 class LoginView extends StatelessWidget {
@@ -24,7 +25,7 @@ class LoginView extends StatelessWidget {
                       TextFormField(
                         // validator: ,
                         style: TextStyle(color: Colors.white),
-                        decoration: buildInputDecoration(
+                        decoration: CustomInputs.loginInputDecoration(
                           hint: 'Ingrese su correo',
                           label: 'Email',
                           icon: Icons.email_outlined,
@@ -35,7 +36,7 @@ class LoginView extends StatelessWidget {
                         // validator: ,
                         obscureText: true,
                         style: TextStyle(color: Colors.white),
-                        decoration: buildInputDecoration(
+                        decoration: CustomInputs.loginInputDecoration(
                           hint: '******',
                           label: 'Contraseña',
                           icon: Icons.lock_clock_outlined,
@@ -58,27 +59,5 @@ class LoginView extends StatelessWidget {
                 ))));
   }
 
-  InputDecoration buildInputDecoration({
-    required String hint,
-    required String label,
-    required IconData icon,
-  }) =>
-      InputDecoration(
-        border: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Colors.white.withOpacity(0.3),
-          ),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Colors.white.withOpacity(0.3),
-            width: 1.5,
-          ),
-        ),
-        hintText: hint,
-        labelText: label,
-        prefixIcon: Icon(icon, color: Colors.grey),
-        hintStyle: TextStyle(color: Colors.grey),
-        labelStyle: TextStyle(color: Colors.grey),
-      );
+  
 }
