@@ -1,5 +1,6 @@
 // Note: Las vistas no tienen un scaffold
 
+import 'package:admin_dashboard/ui/buttons/custom_outlined_button.dart';
 import 'package:admin_dashboard/ui/buttons/link_text.dart';
 import 'package:flutter/material.dart';
 
@@ -38,6 +39,11 @@ class LoginView extends StatelessWidget {
                           label: 'Contraseña',
                           icon: Icons.lock_clock_outlined,
                         ),
+                      ),
+                      SizedBox(height: 20),
+                      CustomOutlinedButton(
+                        onPressed: (){}, 
+                        text: 'Ingresar',
                       ),
                       SizedBox(height: 20),
                       LinkText(
