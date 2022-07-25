@@ -74,7 +74,7 @@ class _DesktopBody extends StatelessWidget {
         // this is necessary because is a child of a list view
         width: size.width,
         height: size.height * 0.95,
-        color: Colors.red,
+        color: Colors.black,
         child: Row(
           children: [
             // Twitter background
