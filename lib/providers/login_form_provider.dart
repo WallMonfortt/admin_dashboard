@@ -11,6 +11,8 @@ class LoginFormProvider extends ChangeNotifier {
   validateForm() {
     if (formKey.currentState!.validate()){
       print('formulario valido');
+      print(email);
+      print(password);
     }else{
       print('formulario invalido');
     }
