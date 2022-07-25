@@ -30,6 +30,7 @@ class LoginView extends StatelessWidget {
                       maxWidth: 370,
                     ),
                     child: Form(
+                      autovalidateMode: AutovalidateMode.always, // Valida el formulario siempre que se cambie algo en el formulario
                       key: loginFormProvider.formKey, // Key del formulario 
                       child: Column(
                         children: [

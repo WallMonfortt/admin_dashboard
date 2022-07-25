@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 
-class LoginFormProvider extends ChangeNotifier {
+class RegisterFormProvider extends ChangeNotifier {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   String email = '';
   String password = '';
+  String name = '';
 
   validateForm() {
     if (formKey.currentState!.validate()){
       print('formulario valido');
       print(email);
       print(password);
+      print(name);
     }else{
       print('formulario invalido');
     }
