@@ -20,6 +20,7 @@ class AuthProvider extends ChangeNotifier {
     print('_token $_token');
 
     // TODO: Navegar al dashboard
+    authStatus = AuthStatus.authenticated;
     notifyListeners();
   }
 
