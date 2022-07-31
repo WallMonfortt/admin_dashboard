@@ -1,3 +1,4 @@
+import 'package:admin_dashboard/services/local_storage.dart';
 import 'package:flutter/material.dart';
 
 class AuthProvider extends ChangeNotifier {
@@ -7,6 +8,7 @@ class AuthProvider extends ChangeNotifier {
     // TODO: Peticion http
 
     _token = 'edederferfefef';
+    LocalStorage.prefs.setString('token', _token!);
 
     print('_token $_token');
 
