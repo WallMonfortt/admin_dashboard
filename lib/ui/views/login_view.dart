@@ -15,12 +15,12 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context);
-
     // El provider debe estar aqui porque se accede a el hasta esta vista
+
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
     return ChangeNotifierProvider(
-        create: (_) => LoginFormProvider(
-            authProvider), // Crea el provider de formulario de login
+        create: (_) =>
+            LoginFormProvider(), // Crea el provider de formulario de login
         child: Builder(builder: (context) {
           final loginFormProvider = Provider.of<LoginFormProvider>(context,
               listen: false); // ignore: deprecated_member_use
@@ -80,8 +80,12 @@ class LoginView extends StatelessWidget {
                             SizedBox(height: 20),
                             CustomOutlinedButton(
                               onPressed: () {
-                                loginFormProvider
+                                final isValid = loginFormProvider
                                     .validateForm(); // Valida el formulario
+                                if (isValid) {
+                                  authProvider.login(loginFormProvider.email,
+                                      loginFormProvider.password); // Login
+                                }
                               },
                               text: 'Ingresar',
                             ),
