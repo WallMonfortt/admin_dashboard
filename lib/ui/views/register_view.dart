@@ -23,7 +23,7 @@ class RegisterView extends StatelessWidget {
                 context,
                 listen: false); // ignore: deprecated_member_use
             return Container(
-                margin: EdgeInsets.only(top: 100),
+                margin: EdgeInsets.only(top: 50),
                 padding: EdgeInsets.symmetric(horizontal: 20),
                 child: Center(
                     child: ConstrainedBox(
@@ -31,9 +31,9 @@ class RegisterView extends StatelessWidget {
                           maxWidth: 370,
                         ),
                         child: Form(
-                          autovalidateMode: AutovalidateMode
-                              .always, 
-                          key: registerFormProvider.formKey,// Valida el formulario siempre que se cambie algo en el formulario
+                          autovalidateMode: AutovalidateMode.always,
+                          key: registerFormProvider
+                              .formKey, // Valida el formulario siempre que se cambie algo en el formulario
                           child: Column(
                             children: [
                               TextFormField(
@@ -57,7 +57,8 @@ class RegisterView extends StatelessWidget {
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
                                     return 'El campo no puede estar vacio';
-                                  } else if (!EmailValidator.validate(value)) { // Valida el email mediante la libreria email_validator
+                                  } else if (!EmailValidator.validate(value)) {
+                                    // Valida el email mediante la libreria email_validator
                                     return 'El email no es valido';
                                   }
                                   return null;
