@@ -8,6 +8,7 @@ class Navbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Container(
       width: double.infinity,
       height: 50,
@@ -15,15 +16,22 @@ class Navbar extends StatelessWidget {
       child: Row(
         children: [
           // TODO: Menu icon
-          IconButton(onPressed: () => {}, icon: Icon(Icons.menu_outlined)),
+          if (size.width <= 700)
+            //...[ //... is used to add multiple widgets to a list
+            IconButton(onPressed: () => {}, icon: Icon(Icons.menu_outlined)),
+
+          //],
+
           SizedBox(
             width: 5,
           ),
+
           //Search input
-          ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: 250),
-            child: SearchText(),
-          ),
+          if (size.width >= 30)
+            ConstrainedBox(
+              constraints: BoxConstraints(maxWidth: 250),
+              child: SearchText(),
+            ),
 
           Spacer(),
 
