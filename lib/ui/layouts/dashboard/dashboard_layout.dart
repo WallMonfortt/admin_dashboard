@@ -1,11 +1,27 @@
+import 'package:admin_dashboard/providers/sidemenu_provider.dart';
 import 'package:admin_dashboard/ui/shared/navbar.dart';
 import 'package:admin_dashboard/ui/shared/sidebar.dart';
 import 'package:flutter/material.dart';
 
-class DashboardLayout extends StatelessWidget {
+class DashboardLayout extends StatefulWidget {
   const DashboardLayout({Key? key, required this.child}) : super(key: key);
 
   final Widget child;
+
+  @override
+  State<DashboardLayout> createState() => _DashboardLayoutState();
+}
+
+class _DashboardLayoutState extends State<DashboardLayout>
+    with SingleTickerProviderStateMixin {
+  @override
+  void initState() {
+    super.initState();
+    SideMenuProvider.menuController = new AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 500),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +40,7 @@ class DashboardLayout extends StatelessWidget {
                     //Navbar
                     Navbar(),
                     Expanded(
-                      child: child,
+                      child: widget.child,
                     ),
                   ]),
                 )
@@ -32,7 +48,23 @@ class DashboardLayout extends StatelessWidget {
                 // This is the main content of the dashboard
               ],
             ),
-            if (size.width < 700) Sidebar(),
+            if (size.width < 700)
+              AnimatedBuilder(
+                  animation: SideMenuProvider.menuController,
+                  builder: (context, _) => Stack(
+                        children: [
+                          // This is the main content of the dashboard
+                          // widget.child,
+                          // This is the side bar of the dashboard
+                          Transform.translate(
+                            offset: Offset(
+                              SideMenuProvider.movement.value,
+                              0,
+                            ),
+                            child: Sidebar(),
+                          ),
+                        ],
+                      )),
           ],
         ));
   }

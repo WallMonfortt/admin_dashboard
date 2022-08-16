@@ -1,3 +1,4 @@
+import 'package:admin_dashboard/providers/sidemenu_provider.dart';
 import 'package:admin_dashboard/ui/shared/widgets/navbar_avatar.dart';
 import 'package:admin_dashboard/ui/shared/widgets/notifications_indicator.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,9 @@ class Navbar extends StatelessWidget {
           // TODO: Menu icon
           if (size.width <= 700)
             //...[ //... is used to add multiple widgets to a list
-            IconButton(onPressed: () => {}, icon: Icon(Icons.menu_outlined)),
+            IconButton(
+                icon: Icon(Icons.menu_outlined),
+                onPressed: () => SideMenuProvider.openMenu()),
 
           //],
 
