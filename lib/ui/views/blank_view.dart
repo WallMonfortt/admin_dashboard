@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:admin_dashboard/ui/cards/white_card.dart';
 import 'package:admin_dashboard/ui/labels/custom_labels.dart';
 
-class DashboardView extends StatelessWidget {
-  const DashboardView({Key? key}) : super(key: key);
+class BlankView extends StatelessWidget {
+  const BlankView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class DashboardView extends StatelessWidget {
             physics: ClampingScrollPhysics(),
             children: [
           Text(
-            'Dashboard view',
+            'Blank view',
             style: CustomLabels.h1,
           ),
           SizedBox(height: 10),
@@ -25,3 +25,5 @@ class DashboardView extends StatelessWidget {
         ]));
   }
 }
+
+//This is a template for the dashboard layout view
