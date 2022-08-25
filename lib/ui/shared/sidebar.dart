@@ -5,6 +5,7 @@ import 'package:admin_dashboard/ui/shared/widgets/logo.dart';
 import 'package:admin_dashboard/ui/shared/widgets/menu_item_custom.dart';
 import 'package:admin_dashboard/ui/shared/widgets/text_separator.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Sidebar extends StatelessWidget {
   const Sidebar({Key? key}) : super(key: key);
@@ -16,6 +17,8 @@ class Sidebar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final sideMenuProvider =
+        Provider.of<SideMenuProvider>(context); // side menu provider
     return Container(
       width: 200,
       height: double.infinity,
@@ -33,7 +36,8 @@ class Sidebar extends StatelessWidget {
           MenuItemCustom(
             text: 'Dashboard',
             icon: Icons.compass_calibration_outlined,
-            isActive: false,
+            isActive:
+                sideMenuProvider.currentPage == Flurorouter.dashboardRoute,
             onPressed: () => navigateTo(Flurorouter.dashboardRoute),
           ),
           MenuItemCustom(
@@ -73,6 +77,7 @@ class Sidebar extends StatelessWidget {
               // This is a generic widget, in this case shows the text 'Ui elements'
               text: 'UI Elements'),
           MenuItemCustom(
+            isActive: sideMenuProvider.currentPage == Flurorouter.iconsRoute,
             text: 'Icons',
             icon: Icons.list_alt_outlined,
             onPressed: () => navigateTo(Flurorouter.iconsRoute),
@@ -88,9 +93,10 @@ class Sidebar extends StatelessWidget {
             onPressed: () => {},
           ),
           MenuItemCustom(
+            isActive: sideMenuProvider.currentPage == Flurorouter.blankRoute,
             text: 'Black',
             icon: Icons.post_add_outlined,
-            onPressed: () => {},
+            onPressed: () => navigateTo(Flurorouter.blankRoute),
           ),
           SizedBox(
             height: 50,

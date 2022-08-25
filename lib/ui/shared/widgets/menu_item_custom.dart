@@ -27,7 +27,7 @@ class _MenuItemCustomState extends State<MenuItemCustom> {
         color: isHovered
             ? Colors.black.withOpacity(0.1)
             : widget.isActive
-                ? Colors.black.withOpacity(0.1)
+                ? Colors.black.withOpacity(0.3)
                 : Colors.transparent, //This the color for the active menu item
         child: Material(
           color: Colors.transparent,
