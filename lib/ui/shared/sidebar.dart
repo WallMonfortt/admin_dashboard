@@ -1,4 +1,6 @@
 import 'package:admin_dashboard/providers/sidemenu_provider.dart';
+import 'package:admin_dashboard/router/router.dart';
+import 'package:admin_dashboard/services/navigation_service.dart';
 import 'package:admin_dashboard/ui/shared/widgets/logo.dart';
 import 'package:admin_dashboard/ui/shared/widgets/menu_item_custom.dart';
 import 'package:admin_dashboard/ui/shared/widgets/text_separator.dart';
@@ -6,6 +8,11 @@ import 'package:flutter/material.dart';
 
 class Sidebar extends StatelessWidget {
   const Sidebar({Key? key}) : super(key: key);
+
+  void navigateTo(String routeName) {
+    NavigationService.navigateTo(routeName);
+    SideMenuProvider.closeMenu();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +34,7 @@ class Sidebar extends StatelessWidget {
             text: 'Dashboard',
             icon: Icons.compass_calibration_outlined,
             isActive: false,
-            onPressed: () => SideMenuProvider.closeMenu(),
+            onPressed: () => navigateTo(Flurorouter.dashboardRoute),
           ),
           MenuItemCustom(
             text: 'Orders',
@@ -42,7 +49,7 @@ class Sidebar extends StatelessWidget {
           MenuItemCustom(
             text: 'Categories',
             icon: Icons.layers_outlined,
-            onPressed: () => {},
+            onPressed: () {},
           ),
           MenuItemCustom(
             text: 'Products',
@@ -63,12 +70,12 @@ class Sidebar extends StatelessWidget {
             height: 30,
           ),
           TextSeparator(
-              // This is a generic widget, in this case shows the text 'main'
+              // This is a generic widget, in this case shows the text 'Ui elements'
               text: 'UI Elements'),
           MenuItemCustom(
             text: 'Icons',
             icon: Icons.list_alt_outlined,
-            onPressed: () => {},
+            onPressed: () => navigateTo(Flurorouter.iconsRoute),
           ),
           MenuItemCustom(
             text: 'Marketing',
@@ -85,6 +92,12 @@ class Sidebar extends StatelessWidget {
             icon: Icons.post_add_outlined,
             onPressed: () => {},
           ),
+          SizedBox(
+            height: 50,
+          ),
+          TextSeparator(
+              // This is a generic widget, in this case shows the text 'Exit'
+              text: 'Exit'),
           MenuItemCustom(
             text: 'Logout',
             icon: Icons.exit_to_app_outlined,
