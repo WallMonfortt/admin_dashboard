@@ -56,6 +56,19 @@ class _DashboardLayoutState extends State<DashboardLayout>
                           // This is the main content of the dashboard
                           // widget.child,
                           // This is the side bar of the dashboard
+                          if (SideMenuProvider.isOpen)
+                            AnimatedOpacity(
+                              opacity: SideMenuProvider.opacity.value,
+                              duration: Duration(milliseconds: 200),
+                              child: GestureDetector(
+                                onTap: (() => SideMenuProvider.closeMenu()),
+                                child: Container(
+                                  width: size.width,
+                                  height: size.height,
+                                  color: Colors.black26,
+                                ),
+                              ),
+                            ),
                           Transform.translate(
                             offset: Offset(
                               SideMenuProvider.movement.value,
