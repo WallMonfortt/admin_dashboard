@@ -1,12 +1,13 @@
 // Note: Las vistas no tienen un scaffold
+import 'package:flutter/material.dart';
 
+import 'package:admin_dashboard/providers/auth_provider.dart';
 import 'package:admin_dashboard/providers/register_form_provider.dart';
 import 'package:admin_dashboard/router/router.dart';
 import 'package:admin_dashboard/ui/buttons/custom_outlined_button.dart';
 import 'package:admin_dashboard/ui/buttons/link_text.dart';
 import 'package:admin_dashboard/ui/inputs/custom_inputs.dart';
 import 'package:email_validator/email_validator.dart';
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class RegisterView extends StatelessWidget {
@@ -96,7 +97,17 @@ class RegisterView extends StatelessWidget {
                               SizedBox(height: 20),
                               CustomOutlinedButton(
                                 onPressed: () {
-                                  registerFormProvider.validateForm();
+                                  final isFormValid =
+                                      registerFormProvider.validateForm();
+                                  if (!isFormValid) return;
+                                  final authProvider =
+                                      Provider.of<AuthProvider>(context,
+                                          listen: false);
+                                  authProvider.register(
+                                    registerFormProvider.email,
+                                    registerFormProvider.password,
+                                    registerFormProvider.name,
+                                  );
                                 },
                                 text: 'Crear cuenta',
                               ),
