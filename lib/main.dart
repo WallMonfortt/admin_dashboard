@@ -1,3 +1,4 @@
+import 'package:admin_dashboard/api/cafe_api.dart';
 import 'package:admin_dashboard/providers/sidemenu_provider.dart';
 import 'package:admin_dashboard/ui/layouts/dashboard/dashboard_layout.dart';
 import 'package:admin_dashboard/ui/layouts/splash/splash_layout.dart';
@@ -13,6 +14,7 @@ import 'package:admin_dashboard/ui/layouts/auth/auth_layout.dart';
 void main() async {
   await LocalStorage
       .configurePrefs(); // local storage configuration, if we have a token, we'll navigate to dashboard
+  CafeApi.configureDio(); // configure dio
   Flurorouter.configureRoutes();
   runApp(AppState());
 }
