@@ -52,9 +52,11 @@ class Sidebar extends StatelessWidget {
             onPressed: () => {},
           ),
           MenuItemCustom(
+            isActive:
+                sideMenuProvider.currentPage == Flurorouter.categoriesRoute,
             text: 'Categories',
             icon: Icons.layers_outlined,
-            onPressed: () {},
+            onPressed: () => navigateTo(Flurorouter.categoriesRoute),
           ),
           MenuItemCustom(
             text: 'Products',
@@ -95,7 +97,7 @@ class Sidebar extends StatelessWidget {
           ),
           MenuItemCustom(
             isActive: sideMenuProvider.currentPage == Flurorouter.blankRoute,
-            text: 'Black',
+            text: 'Blank',
             icon: Icons.post_add_outlined,
             onPressed: () => navigateTo(Flurorouter.blankRoute),
           ),
