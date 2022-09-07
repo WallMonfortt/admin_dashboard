@@ -72,6 +72,7 @@ class AuthProvider extends ChangeNotifier {
       final resp = await CafeApi.httpGet('/auth');
       final authResponse = AuthResponse.fromMap(resp);
       _token = authResponse.token;
+      LocalStorage.prefs.setString('token', authResponse.token);
       user = authResponse.usuario;
       authStatus = AuthStatus.authenticated;
       notifyListeners();
@@ -83,5 +84,13 @@ class AuthProvider extends ChangeNotifier {
       notifyListeners();
       return false;
     }
+  }
+
+  logout() {
+    _token = null;
+    user = null;
+    authStatus = AuthStatus.unauthenticated;
+    LocalStorage.prefs.remove('token');
+    notifyListeners();
   }
 }
