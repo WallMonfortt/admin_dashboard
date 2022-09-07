@@ -1,4 +1,5 @@
 import 'package:admin_dashboard/models/http/auth_response.dart';
+import 'package:admin_dashboard/services/notifications_service.dart';
 import 'package:flutter/material.dart';
 import 'package:admin_dashboard/api/cafe_api.dart';
 import 'package:admin_dashboard/router/router.dart';
@@ -51,6 +52,8 @@ class AuthProvider extends ChangeNotifier {
     }).catchError((e) {
       print('error en : $e');
       // TODO: Mostrar alerta
+      NotificationService.showSnackbarError(
+          'Usuario / Password incorrecto: $e');
     });
   }
 

@@ -1,5 +1,6 @@
 import 'package:admin_dashboard/api/cafe_api.dart';
 import 'package:admin_dashboard/providers/sidemenu_provider.dart';
+import 'package:admin_dashboard/services/notifications_service.dart';
 import 'package:admin_dashboard/ui/layouts/dashboard/dashboard_layout.dart';
 import 'package:admin_dashboard/ui/layouts/splash/splash_layout.dart';
 import 'package:flutter/material.dart';
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       onGenerateRoute: Flurorouter.router.generator,
       navigatorKey: NavigationService.navigatorKey,
+      scaffoldMessengerKey: NotificationService.messagerKey,
       builder: (_, child) {
         // return AuthLayout(child: child!);
         // return DashboardLayout(child: child!);
