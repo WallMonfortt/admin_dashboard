@@ -39,6 +39,8 @@ class LoginView extends StatelessWidget {
                         child: Column(
                           children: [
                             TextFormField(
+                              onFieldSubmitted: (_) =>
+                                  onformSubmit(loginFormProvider, authProvider),
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'El campo no puede estar vacio';
@@ -58,6 +60,8 @@ class LoginView extends StatelessWidget {
                             ),
                             SizedBox(height: 20),
                             TextFormField(
+                              onFieldSubmitted: (_) =>
+                                  onformSubmit(loginFormProvider, authProvider),
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Ingrese su contraseña';
@@ -79,17 +83,8 @@ class LoginView extends StatelessWidget {
                             ),
                             SizedBox(height: 20),
                             CustomOutlinedButton(
-                              onPressed: () {
-                                final isValid = loginFormProvider
-                                    .validateForm(); // Valida el formulario
-                                if (!isValid) return;
-                                final authProvider = Provider.of<AuthProvider>(
-                                    context,
-                                    listen:
-                                        false); // ignore: deprecated_member_use
-                                authProvider.login(loginFormProvider.email,
-                                    loginFormProvider.password); // Login
-                              },
+                              onPressed: () =>
+                                  onformSubmit(loginFormProvider, authProvider),
                               text: 'Ingresar',
                             ),
                             SizedBox(height: 20),
@@ -104,5 +99,14 @@ class LoginView extends StatelessWidget {
                         ),
                       ))));
         }));
+  }
+
+  void onformSubmit(
+      LoginFormProvider loginFormProvider, AuthProvider authProvider) {
+    final isValid = loginFormProvider.validateForm(); // Valida el formulario
+    if (isValid) {
+      authProvider.login(
+          loginFormProvider.email, loginFormProvider.password); // Inicia sesion
+    }
   }
 }
