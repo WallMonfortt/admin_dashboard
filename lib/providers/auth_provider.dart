@@ -14,23 +14,25 @@ class AuthProvider extends ChangeNotifier {
   Usuario? user;
 
   AuthProvider() {
-    this.isAuthenticated();
+    isAuthenticated();
   }
 
   login(String email, String password) {
-    // TODO: Peticion http
+    final data = {'correo': email, 'password': password};
 
-    _token = 'edederferfefef';
-    LocalStorage.prefs.setString('token', _token!);
-
-    print('_token $_token');
-
-    // TODO: Navegar al dashboard
-    authStatus = AuthStatus.authenticated;
-    notifyListeners();
-    // isAuthenticated(); // Actualiza el estado de autenticación
-
-    NavigationService.replaceTo(Flurorouter.dashboardRoute);
+    CafeApi.post('/auth/login', data).then((response) {
+      final authResponse = AuthResponse.fromMap(response);
+      _token = authResponse.token;
+      user = authResponse.usuario;
+      LocalStorage.prefs.setString('token', _token!);
+      authStatus = AuthStatus.authenticated;
+      NavigationService.replaceTo(Flurorouter.dashboardRoute);
+      CafeApi.configureDio();
+      notifyListeners();
+    }).catchError((error) {
+      NotificationService.showSnackbarError(
+          'Usuario o contraseña incorrectos: $error');
+    });
   }
 
   register(String email, String password, String name) {
@@ -48,6 +50,7 @@ class AuthProvider extends ChangeNotifier {
       authStatus = AuthStatus.authenticated;
       LocalStorage.prefs.setString('token', authResponse.token);
       NavigationService.replaceTo(Flurorouter.dashboardRoute);
+      CafeApi.configureDio();
       notifyListeners();
     }).catchError((e) {
       print('error en : $e');
@@ -64,11 +67,21 @@ class AuthProvider extends ChangeNotifier {
       authStatus = AuthStatus.unauthenticated;
       return false;
     }
-    //TODO: go to backend and check if token is valid
 
-    await Future.delayed(Duration(seconds: 1));
-    authStatus = AuthStatus.authenticated;
-    notifyListeners();
-    return true;
+    try {
+      final resp = await CafeApi.httpGet('/auth');
+      final authResponse = AuthResponse.fromMap(resp);
+      _token = authResponse.token;
+      user = authResponse.usuario;
+      authStatus = AuthStatus.authenticated;
+      notifyListeners();
+      return true;
+    } catch (e) {
+      print(
+          'error en : $e'); // try to avoid print in production because it's a bad practice
+      authStatus = AuthStatus.unauthenticated;
+      notifyListeners();
+      return false;
+    }
   }
 }

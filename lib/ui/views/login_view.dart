@@ -82,10 +82,13 @@ class LoginView extends StatelessWidget {
                               onPressed: () {
                                 final isValid = loginFormProvider
                                     .validateForm(); // Valida el formulario
-                                if (isValid) {
-                                  authProvider.login(loginFormProvider.email,
-                                      loginFormProvider.password); // Login
-                                }
+                                if (!isValid) return;
+                                final authProvider = Provider.of<AuthProvider>(
+                                    context,
+                                    listen:
+                                        false); // ignore: deprecated_member_use
+                                authProvider.login(loginFormProvider.email,
+                                    loginFormProvider.password); // Login
                               },
                               text: 'Ingresar',
                             ),
