@@ -29,39 +29,40 @@ class _CategoriesViewState extends State<CategoriesView> {
   Widget build(BuildContext context) {
     final categorias = Provider.of<CategoriesProvider>(context).categorias;
     return Container(
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: ListView(
             // Is more flexible to show content
             physics: const ClampingScrollPhysics(),
             children: [
-          Text(
-            'Categorias',
-            style: CustomLabels.h1,
-          ),
-          SizedBox(height: 10),
-          PaginatedDataTable(
-            columns: [
-              DataColumn(label: Text('ID')),
-              DataColumn(label: Text('Categoria')),
-              DataColumn(label: Text('Creado po')),
-              DataColumn(label: Text('Acciones')),
-            ],
-            source: CategoriesDTS(categorias),
-            actions: [
-              CustomIconButton(
-                  onPressed: () {},
-                  tooltip: 'Create',
-                  icon: Icons.add,
-                  color: Colors.black),
-            ],
-            header: Text('Esta es una lista de las categorias disponibles'),
-            onRowsPerPageChanged: (value) {
-              setState(() {
-                _rowsPerPage = value ?? 10;
-              });
-            },
-            rowsPerPage: _rowsPerPage,
-          ),
-        ]));
+              Text(
+                'Categorias',
+                style: CustomLabels.h1,
+              ),
+              SizedBox(height: 10),
+              PaginatedDataTable(
+                columns: [
+                  DataColumn(label: Text('ID')),
+                  DataColumn(label: Text('Categoria')),
+                  DataColumn(label: Text('Creado po')),
+                  DataColumn(label: Text('Acciones')),
+                ],
+                source: CategoriesDTS(categorias, context),
+                actions: [
+                  CustomIconButton(
+                      onPressed: () {},
+                      tooltip: 'Create',
+                      icon: Icons.add,
+                      color: Colors.black),
+                ],
+                header: Text('Esta es una lista de las categorias disponibles'),
+                onRowsPerPageChanged: (value) {
+                  setState(() {
+                    _rowsPerPage = value ?? 10;
+                  });
+                },
+                rowsPerPage: _rowsPerPage,
+              ),
+            ]));
   }
 }
 
