@@ -22,6 +22,7 @@ class _CategoriesViewState extends State<CategoriesView> {
     super.initState();
 
     Provider.of<CategoriesProvider>(context, listen: false).getCategories();
+    // listen: false because we don't need to listen to this provider in the whole app, you put true wen call the provider in the build method
   }
 
   @override
