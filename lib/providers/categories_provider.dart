@@ -9,8 +9,8 @@ class CategoriesProvider extends ChangeNotifier {
   getCategories() async {
     final resp = await CafeApi.httpGet('/categorias');
     final categoriesResponse = CategoriesResponse.fromMap(resp);
-    this.categorias = [...categoriesResponse.categorias];
-    print(this.categorias);
+    categorias = [...categoriesResponse.categorias];
+    print(categorias);
     notifyListeners();
   }
 }

@@ -27,6 +27,7 @@ class _CategoriesViewState extends State<CategoriesView> {
 
   @override
   Widget build(BuildContext context) {
+    final categorias = Provider.of<CategoriesProvider>(context).categorias;
     return Container(
         child: ListView(
             // Is more flexible to show content
@@ -44,7 +45,7 @@ class _CategoriesViewState extends State<CategoriesView> {
               DataColumn(label: Text('Creado po')),
               DataColumn(label: Text('Acciones')),
             ],
-            source: CategoriesDTS(),
+            source: CategoriesDTS(categorias),
             actions: [
               CustomIconButton(
                   onPressed: () {},
