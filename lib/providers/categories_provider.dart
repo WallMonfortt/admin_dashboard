@@ -30,4 +30,25 @@ class CategoriesProvider extends ChangeNotifier {
       print('Error al crear la categoria');
     }
   }
+
+  Future updateCategory(String id, String name) async {
+    final data = {
+      // this is the data that we are going to send to the server
+      'nombre': name,
+    };
+
+    try {
+      await CafeApi.put('/categorias/$id', data);
+      categorias = categorias.map((cat) {
+        //cat = categoria
+        if (cat.id != id) return cat;
+        cat.nombre = name;
+        return cat;
+      }).toList();
+      notifyListeners();
+    } catch (e) {
+      print(e);
+      print('Error al actualizar la categoria');
+    }
+  }
 }

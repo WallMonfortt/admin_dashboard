@@ -73,7 +73,9 @@ class _CategoryModalState extends State<CategoryModal> {
                       .newCategory(nombre); // this is to create a new category
                 } else {
                   // update
-                  // categoryProvider.updateCategory(id!, nombre);
+
+                  await categoryProvider.updateCategory(
+                      id!, nombre); // this is to update a category
                 }
 
                 Navigator.of(context).pop();

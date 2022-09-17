@@ -62,7 +62,8 @@ class _CategoriesViewState extends State<CategoriesView> {
                             backgroundColor: Colors.transparent,
                             context: context,
                             builder: (_) => CategoryModal(
-                                  categoria: null,
+                                  categoria:
+                                      null, // null because we are creating a new category and not editing one, this parameter is optional
                                 ));
                       },
                       tooltip: 'Create',
