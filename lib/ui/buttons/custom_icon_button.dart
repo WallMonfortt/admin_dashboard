@@ -11,9 +11,9 @@ class CustomIconButton extends StatelessWidget {
     Key? key,
     required this.onPressed,
     required this.tooltip,
-    this.color = Colors.grey,
-    this.isFilled = false,
     required this.icon,
+    this.color = Colors.indigo,
+    this.isFilled = false,
   }) : super(key: key);
 
   @override
@@ -21,19 +21,17 @@ class CustomIconButton extends StatelessWidget {
     return OutlinedButton(
         style: ButtonStyle(
           shape: MaterialStateProperty.all(StadiumBorder()),
-          backgroundColor: MaterialStateProperty.all(
-            color.withOpacity(0.5),
-          ),
-          overlayColor: MaterialStateProperty.all(
-            color.withOpacity(0.3),
-          ),
+          backgroundColor: MaterialStateProperty.all(color.withOpacity(0.5)),
+          overlayColor: MaterialStateProperty.all(color.withOpacity(0.3)),
         ),
-        onPressed: () => onPressed,
+        onPressed: () => onPressed(),
         child: Row(
           children: [
             Icon(icon, color: Colors.white),
-            SizedBox(width: 5),
-            Text(tooltip, style: TextStyle(color: Colors.white)),
+            Text(
+              tooltip,
+              style: TextStyle(color: Colors.white),
+            )
           ],
         ));
   }

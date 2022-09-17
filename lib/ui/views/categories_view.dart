@@ -1,3 +1,4 @@
+import 'package:admin_dashboard/ui/modals/category_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -47,13 +48,6 @@ class _CategoriesViewState extends State<CategoriesView> {
                   DataColumn(label: Text('Acciones')),
                 ],
                 source: CategoriesDTS(categorias, context),
-                actions: [
-                  CustomIconButton(
-                      onPressed: () {},
-                      tooltip: 'Create',
-                      icon: Icons.add,
-                      color: Colors.black),
-                ],
                 header: Text('Esta es una lista de las categorias disponibles'),
                 onRowsPerPageChanged: (value) {
                   setState(() {
@@ -61,6 +55,20 @@ class _CategoriesViewState extends State<CategoriesView> {
                   });
                 },
                 rowsPerPage: _rowsPerPage,
+                actions: [
+                  CustomIconButton(
+                      onPressed: () {
+                        showModalBottomSheet(
+                            backgroundColor: Colors.transparent,
+                            context: context,
+                            builder: (_) => CategoryModal(
+                                  categoria: null,
+                                ));
+                      },
+                      tooltip: 'Create',
+                      icon: Icons.add_outlined,
+                      color: Colors.black),
+                ],
               ),
             ]));
   }
