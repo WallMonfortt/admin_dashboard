@@ -26,8 +26,7 @@ class CategoriesProvider extends ChangeNotifier {
       categorias.add(newCategory);
       notifyListeners(); // this is to notify the changes in the state of the application
     } catch (e) {
-      print(e);
-      print('Error al crear la categoria');
+      throw 'Error al crear la categoria';
     }
   }
 
@@ -47,8 +46,7 @@ class CategoriesProvider extends ChangeNotifier {
       }).toList();
       notifyListeners();
     } catch (e) {
-      print(e);
-      print('Error al actualizar la categoria');
+      throw 'Error al actualizar la categoria';
     }
   }
 

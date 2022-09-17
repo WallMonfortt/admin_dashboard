@@ -13,4 +13,14 @@ class NotificationService {
 
     messagerKey.currentState!.showSnackBar(snackBar);
   }
+
+  static showSnackbarSuccess(String message) {
+    final snackBar = SnackBar(
+      content:
+          Text(message, style: TextStyle(color: Colors.white, fontSize: 18)),
+      backgroundColor: Colors.green.withOpacity(0.8),
+    );
+
+    messagerKey.currentState!.showSnackBar(snackBar);
+  }
 }

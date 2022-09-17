@@ -1,5 +1,6 @@
 import 'package:admin_dashboard/models/category.dart';
 import 'package:admin_dashboard/providers/categories_provider.dart';
+import 'package:admin_dashboard/services/notifications_service.dart';
 import 'package:admin_dashboard/ui/modals/category_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -53,6 +54,8 @@ class CategoriesDTS extends DataTableSource {
                         onPressed: () async {
                           await categoryProvider.deleteCategory(categoria.id);
                           Navigator.of(context).pop();
+                          NotificationService.showSnackbarSuccess(
+                              'Categoria ${categoria.nombre} eliminada');
                         },
                         child: Text('Borrar'),
                       ),
