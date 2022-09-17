@@ -48,4 +48,14 @@ class CafeApi {
       throw ('Error en el servidor(put): ${e.message}');
     }
   }
+
+  // DELETE path
+  static Future delete(String path) async {
+    try {
+      final resp = await _dio.delete(path);
+      return resp.data;
+    } on DioError catch (e) {
+      throw ('Error en el servidor(delete): ${e.message}');
+    }
+  }
 }

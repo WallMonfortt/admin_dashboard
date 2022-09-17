@@ -51,4 +51,15 @@ class CategoriesProvider extends ChangeNotifier {
       print('Error al actualizar la categoria');
     }
   }
+
+  Future deleteCategory(String id) async {
+    try {
+      await CafeApi.delete('/categorias/$id');
+      categorias = categorias.where((cat) => cat.id != id).toList();
+      notifyListeners();
+    } catch (e) {
+      print(e);
+      print('Error al eliminar la categoria');
+    }
+  }
 }
