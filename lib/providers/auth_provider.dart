@@ -1,4 +1,5 @@
 import 'package:admin_dashboard/models/http/auth_response.dart';
+import 'package:admin_dashboard/models/user.dart';
 import 'package:admin_dashboard/services/notifications_service.dart';
 import 'package:flutter/material.dart';
 import 'package:admin_dashboard/api/cafe_api.dart';
