@@ -6,18 +6,36 @@ import 'package:flutter/material.dart';
 class UsersProvider extends ChangeNotifier {
   // This is a provider for the users view
   List<Usuario> users = [];
-  bool _isLoading = true;
+  bool isLoading = true;
+  bool ascending =
+      true; // For sorting the table in the view by name and email in ascending order
 
   UsersProvider() {
-    this.getPaginatedUsers();
+    getPaginatedUsers();
   }
 
   getPaginatedUsers() async {
     final resp = await CafeApi.httpGet('/usuarios?limite=100&desde=0');
     final usersResponse = UsersResponse.fromMap(resp);
     users = [...usersResponse.usuarios];
-    _isLoading = false;
+    isLoading = false;
 
     notifyListeners();
+  }
+
+  void sort<T>(Comparable<T> Function(Usuario user) getField) {
+    // sort<T> is a generic function to sort the users list
+    users.sort((a, b) {
+      final aValue = getField(a);
+      final bValue = getField(b);
+      return ascending
+          ? Comparable.compare(aValue, bValue)
+          : Comparable.compare(bValue,
+              aValue); // return the value of the comparison between the two values
+    });
+
+    ascending = !ascending; // Change the order of the list
+
+    notifyListeners(); // This is to notify the listeners that the list has changed
   }
 }
