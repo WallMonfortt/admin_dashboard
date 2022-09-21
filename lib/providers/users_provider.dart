@@ -9,6 +9,7 @@ class UsersProvider extends ChangeNotifier {
   bool isLoading = true;
   bool ascending =
       true; // For sorting the table in the view by name and email in ascending order
+  int? sortColumnIndex;
 
   UsersProvider() {
     getPaginatedUsers();
