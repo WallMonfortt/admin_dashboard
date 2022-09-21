@@ -1,4 +1,5 @@
 import 'package:admin_dashboard/models/user.dart';
+import 'package:admin_dashboard/services/navigation_service.dart';
 import 'package:flutter/material.dart';
 
 class UsersDTS extends DataTableSource {
@@ -26,7 +27,8 @@ class UsersDTS extends DataTableSource {
           icon: Icon(Icons.edit_outlined),
           color: Colors.blue,
           onPressed: () {
-            // TODO: Navigate to edit user
+            NavigationService.replaceTo(
+                'admin/users/${user.uid}'); // Navigate to the user view
           },
         )),
       ],
