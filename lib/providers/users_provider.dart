@@ -24,6 +24,16 @@ class UsersProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<Usuario> getUserById(String uid) async {
+    try {
+      final resp = await CafeApi.httpGet('/usuarios/$uid');
+      final user = Usuario.fromMap(resp);
+      return user;
+    } catch (e) {
+      throw 'Error in getUserById: $e';
+    }
+  }
+
   void sort<T>(Comparable<T> Function(Usuario user) getField) {
     // sort<T> is a generic function to sort the users list
     users.sort((a, b) {
