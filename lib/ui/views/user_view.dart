@@ -1,5 +1,6 @@
 import 'package:admin_dashboard/models/user.dart';
 import 'package:admin_dashboard/providers/users_provider.dart';
+import 'package:admin_dashboard/ui/inputs/custom_inputs.dart';
 import 'package:flutter/material.dart';
 
 import 'package:admin_dashboard/ui/cards/white_card.dart';
@@ -65,14 +66,66 @@ class _UserViewBody extends StatelessWidget {
             //TODO: Avatar
             _AvatarContainer(),
             // TDOO: Formulario de actualizacion
-            Container(
-              width: 250,
-              height: 200,
-              color: Colors.blue,
-            )
+            _UserViewForm()
           ])
         ],
       ),
+    );
+  }
+}
+
+class _UserViewForm extends StatelessWidget {
+  const _UserViewForm({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return WhiteCard(
+      title: 'Informacion del usuario',
+      child: Form(
+          //TODO:Key
+          autovalidateMode: AutovalidateMode.always,
+          child: Column(
+            children: [
+              TextFormField(
+                decoration: CustomInputs.formInputDecoration(
+                    hint: 'Nombre del usuario',
+                    label: 'Nombre',
+                    icon: Icons.supervised_user_circle_outlined),
+              ),
+              SizedBox(height: 20),
+              TextFormField(
+                decoration: CustomInputs.formInputDecoration(
+                    hint: 'Correo del usuario',
+                    label: 'correo',
+                    icon: Icons.mark_email_read_outlined),
+              ),
+              SizedBox(height: 20),
+              ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: 120),
+                child: ElevatedButton(
+                    onPressed: () {},
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.indigo),
+                      shadowColor:
+                          MaterialStateProperty.all(Colors.transparent),
+                    ),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.save_outlined,
+                          size: 20,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text('Guardar')
+                      ],
+                    )),
+              )
+            ],
+          )),
     );
   }
 }
