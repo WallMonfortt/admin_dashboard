@@ -1,3 +1,4 @@
+import 'package:admin_dashboard/providers/user_form_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -45,6 +46,7 @@ class AppState extends StatelessWidget {
               true, // we don't need to listen to this provider in the whole app, so we don't need to use lazy: false
           create: (_) => UsersProvider(),
         ),
+        ChangeNotifierProvider(create: (_) => UserFormProvider()),
       ],
       child: MyApp(),
     );

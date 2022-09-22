@@ -1,4 +1,5 @@
 import 'package:admin_dashboard/models/user.dart';
+import 'package:admin_dashboard/providers/user_form_provider.dart';
 import 'package:admin_dashboard/providers/users_provider.dart';
 import 'package:admin_dashboard/ui/inputs/custom_inputs.dart';
 import 'package:flutter/material.dart';
@@ -21,9 +22,14 @@ class _UserViewState extends State<UserView> {
   void initState() {
     super.initState();
     final usersProvider = Provider.of<UsersProvider>(context, listen: false);
-    usersProvider
-        .getUserById(widget.uid)
-        .then((userDB) => setState(() => {user = userDB}));
+    final userFormProvider =
+        Provider.of<UserFormProvider>(context, listen: false);
+    usersProvider.getUserById(widget.uid).then((userDB) {
+      userFormProvider.user = userDB;
+      setState(() {
+        user = userDB;
+      });
+    });
   }
 
   @override
@@ -81,6 +87,8 @@ class _UserViewForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userFormProvider = Provider.of<UserFormProvider>(context);
+    final user = userFormProvider.user!;
     return WhiteCard(
       title: 'Informacion del usuario',
       child: Form(
@@ -89,6 +97,7 @@ class _UserViewForm extends StatelessWidget {
           child: Column(
             children: [
               TextFormField(
+                initialValue: user.nombre,
                 decoration: CustomInputs.formInputDecoration(
                     hint: 'Nombre del usuario',
                     label: 'Nombre',
@@ -96,6 +105,7 @@ class _UserViewForm extends StatelessWidget {
               ),
               SizedBox(height: 20),
               TextFormField(
+                initialValue: user.correo,
                 decoration: CustomInputs.formInputDecoration(
                     hint: 'Correo del usuario',
                     label: 'correo',
@@ -105,7 +115,9 @@ class _UserViewForm extends StatelessWidget {
               ConstrainedBox(
                 constraints: BoxConstraints(maxWidth: 120),
                 child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      //TODO: Actualizar usuario
+                    },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Colors.indigo),
                       shadowColor:
