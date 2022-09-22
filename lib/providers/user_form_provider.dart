@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class UserFormProvider extends ChangeNotifier {
   Usuario? user;
 
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  late GlobalKey<FormState> formKey;
 
   bool _isValidForm() {
     return formKey.currentState!.validate();
