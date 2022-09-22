@@ -44,9 +44,39 @@ class _UserViewState extends State<UserView> {
                   alignment: Alignment.center,
                   height: 300,
                   child: CircularProgressIndicator(),
-                ))
+                )),
+              if (user != null) _UserViewBody()
             ]));
   }
 }
 
-//This is a template for the dashboard layout view
+class _UserViewBody extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Table(
+        //TODO: Ancho de la columna
+        columnWidths: {
+          0: FixedColumnWidth(250),
+        },
+
+        children: [
+          TableRow(children: [
+            //TODO: Avatar
+            Container(
+              width: 250,
+              height: 200,
+              color: Colors.red,
+            ),
+            // TDOO: Formulario de actualizacion
+            Container(
+              width: 250,
+              height: 200,
+              color: Colors.blue,
+            )
+          ])
+        ],
+      ),
+    );
+  }
+}
