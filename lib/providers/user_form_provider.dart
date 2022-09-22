@@ -8,7 +8,14 @@ class UserFormProvider extends ChangeNotifier {
 
   // TODO: Update the user
 
-  bool isValidForm() {
+  bool _isValidForm() {
     return formKey.currentState!.validate();
+  }
+
+  updateUser() {
+    if (!_isValidForm()) return;
+    print(' Info a postear');
+    print('Nombre: ${user!.nombre}');
+    print('Email: ${user!.correo}');
   }
 }
