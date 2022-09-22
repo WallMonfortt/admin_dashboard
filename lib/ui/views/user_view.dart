@@ -1,6 +1,7 @@
 import 'package:admin_dashboard/models/user.dart';
 import 'package:admin_dashboard/providers/user_form_provider.dart';
 import 'package:admin_dashboard/providers/users_provider.dart';
+import 'package:admin_dashboard/services/notifications_service.dart';
 import 'package:admin_dashboard/ui/inputs/custom_inputs.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
@@ -134,9 +135,17 @@ class _UserViewForm extends StatelessWidget {
               ConstrainedBox(
                 constraints: BoxConstraints(maxWidth: 120),
                 child: ElevatedButton(
-                    onPressed: () {
-                      //TODO: Actualizar usuario
-                      userFormProvider.updateUser();
+                    onPressed: () async {
+                      final saved = await userFormProvider.updateUser();
+                      if (saved) {
+                        NotificationService.showSnackbarSuccess(
+                            'Usuario actualizado');
+                        Provider.of<UsersProvider>(context, listen: false)
+                            .getPaginatedUsers();
+                      } else {
+                        NotificationService.showSnackbarError(
+                            'No se pudo actualizar el usuario');
+                      }
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Colors.indigo),
