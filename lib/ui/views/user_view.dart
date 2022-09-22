@@ -103,7 +103,8 @@ class _UserViewForm extends StatelessWidget {
                     hint: 'Nombre del usuario',
                     label: 'Nombre',
                     icon: Icons.supervised_user_circle_outlined),
-                onChanged: (value) => user.nombre = value,
+                onChanged: (value) => userFormProvider.copyUserWith(
+                    nombre: value), // This is to update the user name
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'El correo es obligatorio';
@@ -121,7 +122,8 @@ class _UserViewForm extends StatelessWidget {
                     hint: 'Correo del usuario',
                     label: 'correo',
                     icon: Icons.mark_email_read_outlined),
-                onChanged: (value) => user.correo = value,
+                onChanged: (value) => userFormProvider.copyUserWith(
+                    correo: value), // This is to update the user email
                 validator: (value) {
                   if (!EmailValidator.validate(value ?? ''))
                     return 'Email no valido';
