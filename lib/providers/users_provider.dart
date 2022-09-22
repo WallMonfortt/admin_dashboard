@@ -49,4 +49,12 @@ class UsersProvider extends ChangeNotifier {
 
     notifyListeners(); // This is to notify the listeners that the list has changed
   }
+
+  /// This function is to refresh the user in the list
+  void refreshUser(Usuario newUser) {
+    // compare the uid of the user in the list with the uid of the new user
+    final index = users.indexWhere((user) => user.uid == newUser.uid);
+    users[index] = newUser; // replace the user in the list with the new user
+    notifyListeners();
+  }
 }

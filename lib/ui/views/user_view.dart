@@ -141,7 +141,7 @@ class _UserViewForm extends StatelessWidget {
                         NotificationService.showSnackbarSuccess(
                             'Usuario actualizado');
                         Provider.of<UsersProvider>(context, listen: false)
-                            .getPaginatedUsers();
+                            .refreshUser(user);
                       } else {
                         NotificationService.showSnackbarError(
                             'No se pudo actualizar el usuario');
