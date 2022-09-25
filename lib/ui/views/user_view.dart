@@ -5,10 +5,12 @@ import 'package:admin_dashboard/services/navigation_service.dart';
 import 'package:admin_dashboard/services/notifications_service.dart';
 import 'package:admin_dashboard/ui/inputs/custom_inputs.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
 import 'package:admin_dashboard/ui/cards/white_card.dart';
 import 'package:admin_dashboard/ui/labels/custom_labels.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 class UserView extends StatefulWidget {
@@ -229,8 +231,26 @@ class _AvatarContainer extends StatelessWidget {
                               Icons.camera_alt_outlined,
                               size: 20,
                             ),
-                            onPressed: () {
-                              //TODO: Seleccionar la imagen
+                            onPressed: () async {
+                              try {
+                                var path = (await FilePicker.platform.pickFiles(
+                                  type: FileType.custom,
+                                  allowMultiple: false,
+                                  onFileLoading: (FilePickerStatus status) =>
+                                      print(status),
+                                  allowedExtensions: ['jpg', 'png', 'jpeg'],
+                                ))
+                                    ?.files
+                                    .first;
+                                var file = path?.bytes;
+                                final res = await userFormProvider.uploadImage(
+                                    '/uploads/usuarios/${user.uid}', file!);
+                                print(res.img);
+                              } on PlatformException catch (e) {
+                                print('Unsupported operation' + e.toString());
+                              } catch (e) {
+                                print(e.toString());
+                              }
                             },
                           )),
                     )

@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:admin_dashboard/api/cafe_api.dart';
 import 'package:admin_dashboard/models/user.dart';
 import 'package:flutter/material.dart';
@@ -48,6 +50,18 @@ class UserFormProvider extends ChangeNotifier {
     } catch (e) {
       print('Error in updateUser: $e');
       return false;
+    }
+  }
+
+  Future<Usuario> uploadImage(String path, Uint8List bytes) async {
+    try {
+      final resp = await CafeApi.uploadFile(path, bytes);
+      final user = Usuario.fromMap(resp);
+      notifyListeners();
+      return user;
+    } catch (e) {
+      print('Error in uploadImage: $e');
+      throw 'Error in uploadImage: $e';
     }
   }
 }
