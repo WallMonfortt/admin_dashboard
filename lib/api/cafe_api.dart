@@ -7,8 +7,10 @@ class CafeApi {
   static final Dio _dio = Dio();
 
   static void configureDio() {
-    //Base url
-    _dio.options.baseUrl = "http://localhost:8080/api";
+    // Base url desarrollo
+    // _dio.options.baseUrl = "http://localhost:8080/api";
+    //Base url prodiccion
+    _dio.options.baseUrl = "https://flutter-web-admin-wal.herokuapp.com/api";
 
     // Headers
     _dio.options.headers = {
