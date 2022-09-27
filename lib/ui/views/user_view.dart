@@ -250,9 +250,14 @@ class _AvatarContainer extends StatelessWidget {
                                     ?.files
                                     .first;
                                 var file = path?.bytes;
-                                final res = await userFormProvider.uploadImage(
-                                    '/uploads/usuarios/${user.uid}', file!);
-                                print(res.img);
+                                final newUser =
+                                    await userFormProvider.uploadImage(
+                                        '/uploads/usuarios/${user.uid}', file!);
+                                print(newUser.img);
+                                // update the user in the provider to show the new image
+                                Provider.of<UsersProvider>(context,
+                                        listen: false)
+                                    .refreshUser(newUser);
                                 // Close the busy indicator
                                 Navigator.of(context)
                                     .pushNamed('/admin/users/${user.uid}');

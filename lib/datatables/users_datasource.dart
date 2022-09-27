@@ -11,11 +11,16 @@ class UsersDTS extends DataTableSource {
   DataRow getRow(int index) {
     final user = users[index];
 
-    final image = Image(
-      image: Image.network('./assets/no-image.jpg').image,
-      width: 35,
-      height: 35,
-    );
+    final image = user.img == null
+        ? Image(
+            image: Image.network('./assets/no-image.jpg').image,
+            width: 35,
+            height: 35,
+          )
+        : CircleAvatar(
+            backgroundImage: NetworkImage(user.img!),
+            radius: 17.5,
+          );
     return DataRow.byIndex(
       index: index,
       cells: [
