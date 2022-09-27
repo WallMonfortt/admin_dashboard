@@ -29,7 +29,7 @@ class UsersDTS extends DataTableSource {
         DataCell(Text(user.correo)),
         DataCell(Text(user.uid)),
         DataCell(IconButton(
-          icon: Icon(Icons.edit_outlined),
+          icon: const Icon(Icons.edit_outlined),
           color: Colors.blue,
           onPressed: () {
             NavigationService.replaceTo(

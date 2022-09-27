@@ -14,7 +14,7 @@ class AuthLayout extends StatelessWidget {
 
     return Scaffold(
         body: Scrollbar(
-      child: ListView(physics: ClampingScrollPhysics(), children: [
+      child: ListView(physics: const ClampingScrollPhysics(), children: [
         (size.width > 1000)
             ? // Desktop
             _DesktopBody(child: child)
@@ -22,7 +22,7 @@ class AuthLayout extends StatelessWidget {
             : _MobileBody(child: child),
 
         // linksbar
-        LinksBar(),
+        const LinksBar(),
       ]),
     ));
   }
@@ -37,14 +37,14 @@ class _MobileBody extends StatelessWidget {
     return Container(
       color: Colors.black,
       child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-        SizedBox(height: 20),
-        CustomTitleWidget(),
-        Container(
+        const SizedBox(height: 20),
+        const CustomTitleWidget(),
+        SizedBox(
           width: double.infinity,
           height: 420,
           child: child,
         ),
-        Container(
+        const SizedBox(
           width: double.infinity,
           height: 400,
           child: BackgroundTwitter(),
@@ -69,16 +69,16 @@ class _DesktopBody extends StatelessWidget {
         child: Row(
           children: [
             // Twitter background
-            Expanded(child: BackgroundTwitter()),
+            const Expanded(child: BackgroundTwitter()),
             // View container
             Container(
               width: 600,
               height: double.infinity,
               color: Colors.black,
               child: Column(children: [
-                SizedBox(height: 10),
-                CustomTitleWidget(),
-                SizedBox(
+                const SizedBox(height: 10),
+                const CustomTitleWidget(),
+                const SizedBox(
                   height: 50,
                 ),
                 Expanded(

@@ -44,7 +44,7 @@ class AuthProvider extends ChangeNotifier {
     };
 
     CafeApi.post('/usuarios', data).then((json) {
-      print(json);
+      // print(json);
       final authResponse = AuthResponse.fromMap(json);
       user = authResponse.usuario;
 
@@ -54,8 +54,7 @@ class AuthProvider extends ChangeNotifier {
       CafeApi.configureDio();
       notifyListeners();
     }).catchError((e) {
-      print('error en : $e');
-      // TODO: Mostrar alerta
+      // print('error en : $e');
       NotificationService.showSnackbarError(
           'Usuario / Password incorrecto: $e');
     });
@@ -79,8 +78,8 @@ class AuthProvider extends ChangeNotifier {
       notifyListeners();
       return true;
     } catch (e) {
-      print(
-          'error en : $e'); // try to avoid print in production because it's a bad practice
+      // print(
+      //     'error en : $e'); // try to avoid print in production because it's a bad practice
       authStatus = AuthStatus.unauthenticated;
       notifyListeners();
       return false;

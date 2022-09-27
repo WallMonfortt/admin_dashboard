@@ -16,37 +16,36 @@ class Navbar extends StatelessWidget {
       decoration: buidlBoxDecoration(),
       child: Row(
         children: [
-          // TODO: Menu icon
           if (size.width <= 700)
             //...[ //... is used to add multiple widgets to a list
             IconButton(
-                icon: Icon(Icons.menu_outlined),
+                icon: const Icon(Icons.menu_outlined),
                 onPressed: () => SideMenuProvider.openMenu()),
 
           //],
 
-          SizedBox(
+          const SizedBox(
             width: 5,
           ),
 
           //Search input
           if (size.width >= 30)
             ConstrainedBox(
-              constraints: BoxConstraints(maxWidth: 250),
-              child: SearchText(),
+              constraints: const BoxConstraints(maxWidth: 250),
+              child: const SearchText(),
             ),
 
-          Spacer(),
+          const Spacer(),
 
-          NotificationsIndicator(),
+          const NotificationsIndicator(),
 
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
 
-          NavbarAvatar(),
+          const NavbarAvatar(),
 
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
         ],
@@ -54,7 +53,7 @@ class Navbar extends StatelessWidget {
     );
   }
 
-  BoxDecoration buidlBoxDecoration() => BoxDecoration(
+  BoxDecoration buidlBoxDecoration() => const BoxDecoration(
         color: Colors.white,
         boxShadow: [
           BoxShadow(

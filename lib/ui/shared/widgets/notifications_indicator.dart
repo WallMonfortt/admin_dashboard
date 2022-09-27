@@ -5,10 +5,9 @@ class NotificationsIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: Stack(
+    return Stack(
       children: [
-        Icon(
+        const Icon(
           Icons.notifications_none_outlined,
           color: Colors.grey,
           size: 20,
@@ -22,7 +21,7 @@ class NotificationsIndicator extends StatelessWidget {
           ),
         ),
       ],
-    ));
+    );
   }
 
   BoxDecoration buildBoxDecoration() {

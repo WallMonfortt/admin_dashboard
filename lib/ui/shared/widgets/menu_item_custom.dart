@@ -23,7 +23,7 @@ class _MenuItemCustomState extends State<MenuItemCustom> {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-        duration: Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 300),
         color: isHovered
             ? Colors.black.withOpacity(0.1)
             : widget.isActive
@@ -37,7 +37,7 @@ class _MenuItemCustomState extends State<MenuItemCustom> {
                 : () => widget
                     .onPressed(), // This is the onTap function for the menu item if it is not active
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
               child: MouseRegion(
                 onEnter: (_) => setState(() => isHovered = true),
                 onExit: (_) => setState(() => isHovered = false),
@@ -48,7 +48,7 @@ class _MenuItemCustomState extends State<MenuItemCustom> {
                       widget.icon,
                       color: Colors.white.withOpacity(0.3),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Text(

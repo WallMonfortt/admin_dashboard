@@ -23,11 +23,11 @@ class LoginView extends StatelessWidget {
           final loginFormProvider = Provider.of<LoginFormProvider>(context,
               listen: false); // ignore: deprecated_member_use
           return Container(
-              margin: EdgeInsets.only(top: 100),
-              padding: EdgeInsets.symmetric(horizontal: 20),
+              margin: const EdgeInsets.only(top: 100),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Center(
                   child: ConstrainedBox(
-                      constraints: BoxConstraints(
+                      constraints: const BoxConstraints(
                         maxWidth: 370,
                       ),
                       child: Form(
@@ -49,14 +49,14 @@ class LoginView extends StatelessWidget {
                               },
                               onChanged: (value) =>
                                   loginFormProvider.email = value,
-                              style: TextStyle(color: Colors.white),
+                              style: const TextStyle(color: Colors.white),
                               decoration: CustomInputs.loginInputDecoration(
                                 hint: 'Ingrese su correo',
                                 label: 'Email',
                                 icon: Icons.email_outlined,
                               ),
                             ),
-                            SizedBox(height: 20),
+                            const SizedBox(height: 20),
                             TextFormField(
                               onFieldSubmitted: (_) =>
                                   onformSubmit(loginFormProvider, authProvider),
@@ -72,20 +72,20 @@ class LoginView extends StatelessWidget {
                               onChanged: (value) =>
                                   loginFormProvider.password = value,
                               obscureText: true,
-                              style: TextStyle(color: Colors.white),
+                              style: const TextStyle(color: Colors.white),
                               decoration: CustomInputs.loginInputDecoration(
                                 hint: '******',
                                 label: 'Contraseña',
                                 icon: Icons.lock_clock_outlined,
                               ),
                             ),
-                            SizedBox(height: 20),
+                            const SizedBox(height: 20),
                             CustomOutlinedButton(
                               onPressed: () =>
                                   onformSubmit(loginFormProvider, authProvider),
                               text: 'Ingresar',
                             ),
-                            SizedBox(height: 20),
+                            const SizedBox(height: 20),
                             LinkText(
                               text: 'Nueva cuenta',
                               onPressed: () {

@@ -23,11 +23,11 @@ class RegisterView extends StatelessWidget {
                 context,
                 listen: false); // ignore: deprecated_member_use
             return Container(
-                margin: EdgeInsets.only(top: 50),
-                padding: EdgeInsets.symmetric(horizontal: 20),
+                margin: const EdgeInsets.only(top: 50),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Center(
                     child: ConstrainedBox(
-                        constraints: BoxConstraints(
+                        constraints: const BoxConstraints(
                           maxWidth: 370,
                         ),
                         child: Form(
@@ -45,14 +45,14 @@ class RegisterView extends StatelessWidget {
                                 },
                                 onChanged: (value) =>
                                     registerFormProvider.name = value,
-                                style: TextStyle(color: Colors.white),
+                                style: const TextStyle(color: Colors.white),
                                 decoration: CustomInputs.loginInputDecoration(
                                   hint: 'Ingrese su nombre',
                                   label: 'Nombre',
                                   icon: Icons.supervised_user_circle_outlined,
                                 ),
                               ),
-                              SizedBox(height: 20),
+                              const SizedBox(height: 20),
                               TextFormField(
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
@@ -65,14 +65,14 @@ class RegisterView extends StatelessWidget {
                                 },
                                 onChanged: (value) =>
                                     registerFormProvider.email = value,
-                                style: TextStyle(color: Colors.white),
+                                style: const TextStyle(color: Colors.white),
                                 decoration: CustomInputs.loginInputDecoration(
                                   hint: 'Ingrese su correo',
                                   label: 'Email',
                                   icon: Icons.email_outlined,
                                 ),
                               ),
-                              SizedBox(height: 20),
+                              const SizedBox(height: 20),
                               TextFormField(
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
@@ -86,14 +86,14 @@ class RegisterView extends StatelessWidget {
                                 onChanged: (value) =>
                                     registerFormProvider.password = value,
                                 obscureText: true,
-                                style: TextStyle(color: Colors.white),
+                                style: const TextStyle(color: Colors.white),
                                 decoration: CustomInputs.loginInputDecoration(
                                   hint: '******',
                                   label: 'Contraseña',
                                   icon: Icons.lock_clock_outlined,
                                 ),
                               ),
-                              SizedBox(height: 20),
+                              const SizedBox(height: 20),
                               CustomOutlinedButton(
                                 onPressed: () {
                                   final isFormValid =
@@ -110,7 +110,7 @@ class RegisterView extends StatelessWidget {
                                 },
                                 text: 'Crear cuenta',
                               ),
-                              SizedBox(height: 20),
+                              const SizedBox(height: 20),
                               LinkText(
                                 text: 'Ir a login',
                                 onPressed: () {

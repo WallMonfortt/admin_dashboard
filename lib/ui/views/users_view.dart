@@ -13,39 +13,39 @@ class UsersView extends StatelessWidget {
     final usersProvider = Provider.of<UsersProvider>(context);
     final usersDataSource = UsersDTS(usersProvider.users);
     return Container(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: ListView(
             // Is more flexible to show content
-            physics: ClampingScrollPhysics(),
+            physics: const ClampingScrollPhysics(),
             children: [
               Text(
                 'Users',
                 style: CustomLabels.h1,
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               PaginatedDataTable(
                 sortAscending: usersProvider.ascending,
                 sortColumnIndex: usersProvider.sortColumnIndex,
                 columns: [
-                  DataColumn(label: Text('Avatar')),
+                  const DataColumn(label: Text('Avatar')),
                   DataColumn(
-                      label: Text('Nombre'),
+                      label: const Text('Nombre'),
                       onSort: (columnIndex, _) {
                         usersProvider.sortColumnIndex = columnIndex;
                         usersProvider.sort<String>(((user) => user.nombre));
                       }),
                   DataColumn(
-                      label: Text('Email'),
+                      label: const Text('Email'),
                       onSort: (columnIndex, _) {
                         usersProvider.sortColumnIndex = columnIndex;
                         usersProvider.sort<String>(((user) => user.correo));
                       }),
-                  DataColumn(label: Text('UID')),
-                  DataColumn(label: Text('Acciones')),
+                  const DataColumn(label: Text('UID')),
+                  const DataColumn(label: Text('Acciones')),
                 ],
                 source: usersDataSource,
                 onPageChanged: (page) {
-                  print('Page: $page');
+                  // print('Page: $page');
                 },
               )
             ]));

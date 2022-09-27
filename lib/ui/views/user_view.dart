@@ -53,22 +53,22 @@ class _UserViewState extends State<UserView> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: ListView(
             // Is more flexible to show content
-            physics: ClampingScrollPhysics(),
+            physics: const ClampingScrollPhysics(),
             children: [
               Text(
                 'User view',
                 style: CustomLabels.h1,
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               if (user == null)
                 WhiteCard(
                     child: Container(
                   alignment: Alignment.center,
                   height: 300,
-                  child: CircularProgressIndicator(),
+                  child: const CircularProgressIndicator(),
                 )),
               if (user != null) _UserViewBody()
             ]));
@@ -78,22 +78,17 @@ class _UserViewState extends State<UserView> {
 class _UserViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Table(
-        //TODO: Ancho de la columna
-        columnWidths: {
-          0: FixedColumnWidth(250),
-        },
-
-        children: [
-          TableRow(children: [
-            //TODO: Avatar
-            _AvatarContainer(),
-            // TDOO: Formulario de actualizacion
-            _UserViewForm()
-          ])
-        ],
-      ),
+    return Table(
+      columnWidths: const {
+        0: FixedColumnWidth(250),
+      },
+      children: [
+        TableRow(children: [
+          _AvatarContainer(),
+          // TDOO: Formulario de actualizacion
+          const _UserViewForm()
+        ])
+      ],
     );
   }
 }
@@ -132,7 +127,7 @@ class _UserViewForm extends StatelessWidget {
                   return null;
                 },
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               TextFormField(
                 initialValue: user.correo,
                 decoration: CustomInputs.formInputDecoration(
@@ -142,14 +137,15 @@ class _UserViewForm extends StatelessWidget {
                 onChanged: (value) => userFormProvider.copyUserWith(
                     correo: value), // This is to update the user email
                 validator: (value) {
-                  if (!EmailValidator.validate(value ?? ''))
+                  if (!EmailValidator.validate(value ?? '')) {
                     return 'Email no valido';
+                  }
                   return null;
                 },
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ConstrainedBox(
-                constraints: BoxConstraints(maxWidth: 120),
+                constraints: const BoxConstraints(maxWidth: 120),
                 child: ElevatedButton(
                     onPressed: () async {
                       final saved = await userFormProvider.updateUser();
@@ -169,7 +165,7 @@ class _UserViewForm extends StatelessWidget {
                           MaterialStateProperty.all(Colors.transparent),
                     ),
                     child: Row(
-                      children: [
+                      children: const [
                         Icon(
                           Icons.save_outlined,
                           size: 20,
@@ -199,15 +195,15 @@ class _AvatarContainer extends StatelessWidget {
         : FadeInImage.assetNetwork(placeholder: 'loader.gif', image: user.img!);
     return WhiteCard(
       width: 250,
-      child: Container(
+      child: SizedBox(
         width: double.infinity, // Take all the width of the parent
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text('Profile', style: CustomLabels.h2),
-              SizedBox(height: 20),
-              Container(
+              const SizedBox(height: 20),
+              SizedBox(
                 width: 150,
                 height: 160,
                 child: Stack(
@@ -227,7 +223,7 @@ class _AvatarContainer extends StatelessWidget {
                           child: FloatingActionButton(
                             backgroundColor: Colors.indigo,
                             elevation: 0,
-                            child: Icon(
+                            child: const Icon(
                               Icons.camera_alt_outlined,
                               size: 20,
                             ),
@@ -237,12 +233,12 @@ class _AvatarContainer extends StatelessWidget {
                                   type: FileType.custom,
                                   allowMultiple: false,
                                   onFileLoading: (FilePickerStatus status) {
-                                    status == FilePickerStatus.picking
+                                    status == FilePickerStatus.picking ||
+                                            status == FilePickerStatus.done
                                         ? NotificationService.showBusyIndicator(
                                             context)
-                                        : NotificationService
-                                            .showSnackbarSuccess(
-                                                'Imagen cargada');
+                                        : NotificationService.showSnackbarSuccess(
+                                            'Imagen cargada, usuario actualizado');
                                   },
                                   allowedExtensions: ['jpg', 'png', 'jpeg'],
                                 ))
@@ -252,7 +248,7 @@ class _AvatarContainer extends StatelessWidget {
                                 final newUser =
                                     await userFormProvider.uploadImage(
                                         '/uploads/usuarios/${user.uid}', file!);
-                                print(newUser.img);
+                                // print(newUser.img);
                                 // update the user in the provider to show the new image
                                 Provider.of<UsersProvider>(context,
                                         listen: false)
@@ -261,9 +257,15 @@ class _AvatarContainer extends StatelessWidget {
                                 Navigator.of(context)
                                     .pushNamed('/admin/users/${user.uid}');
                               } on PlatformException catch (e) {
-                                print('Unsupported operation' + e.toString());
+                                // print('Unsupported operation' + e.toString());
+                                NotificationService.showSnackbarError(
+                                    'No se pudo cargar la imagen: ${e.message}');
                               } catch (e) {
                                 print(e.toString());
+                                Navigator.of(context)
+                                    .pushNamed('/admin/users/${user.uid}');
+                                NotificationService.showSnackbarError(
+                                    'usuario no actualizado');
                               }
                             },
                           )),
@@ -271,10 +273,10 @@ class _AvatarContainer extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Text(
                 user.nombre,
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: const TextStyle(fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               )
             ]),

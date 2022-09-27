@@ -1,6 +1,7 @@
 import 'package:admin_dashboard/api/cafe_api.dart';
 import 'package:admin_dashboard/models/category.dart';
 import 'package:admin_dashboard/models/http/categories_response.dart';
+import 'package:admin_dashboard/services/notifications_service.dart';
 import 'package:flutter/material.dart';
 
 class CategoriesProvider extends ChangeNotifier {
@@ -10,7 +11,7 @@ class CategoriesProvider extends ChangeNotifier {
     final resp = await CafeApi.httpGet('/categorias');
     final categoriesResponse = CategoriesResponse.fromMap(resp);
     categorias = [...categoriesResponse.categorias];
-    print(categorias);
+    // print(categorias);
     notifyListeners();
   }
 
@@ -55,9 +56,11 @@ class CategoriesProvider extends ChangeNotifier {
       await CafeApi.delete('/categorias/$id');
       categorias = categorias.where((cat) => cat.id != id).toList();
       notifyListeners();
+      NotificationService.showSnackbarSuccess('Categoria eliminada');
     } catch (e) {
-      print(e);
-      print('Error al eliminar la categoria');
+      // print(e);
+      // print('Error al eliminar la categoria');
+      NotificationService.showSnackbarError('Error al eliminar la categoria');
     }
   }
 }

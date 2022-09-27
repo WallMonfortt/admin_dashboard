@@ -8,8 +8,8 @@ class TextSeparator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20),
-      margin: EdgeInsets.only(top: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      margin: const EdgeInsets.only(top: 20),
       child: Text(text,
           style: GoogleFonts.roboto(
             color: Colors.white.withOpacity(0.3),

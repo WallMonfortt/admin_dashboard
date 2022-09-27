@@ -9,7 +9,7 @@ class SideMenuProvider extends ChangeNotifier {
 
   void setCurrentUrl(String url) {
     _currentPage = url;
-    Future.delayed(Duration(milliseconds: 100), () {
+    Future.delayed(const Duration(milliseconds: 100), () {
       notifyListeners();
     });
   }

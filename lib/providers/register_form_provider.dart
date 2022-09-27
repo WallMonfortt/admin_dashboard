@@ -9,13 +9,13 @@ class RegisterFormProvider extends ChangeNotifier {
 
   validateForm() {
     if (formKey.currentState!.validate()) {
-      print('formulario valido');
-      print(email);
-      print(password);
-      print(name);
+      // print('formulario valido');
+      // print(email);
+      // print(password);
+      // print(name);
       return true;
     } else {
-      print('formulario invalido');
+      // print('formulario invalido');
       return false;
     }
   }

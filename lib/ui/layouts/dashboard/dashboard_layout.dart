@@ -17,9 +17,9 @@ class _DashboardLayoutState extends State<DashboardLayout>
   @override
   void initState() {
     super.initState();
-    SideMenuProvider.menuController = new AnimationController(
+    SideMenuProvider.menuController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 500),
     );
   }
 
@@ -27,18 +27,18 @@ class _DashboardLayoutState extends State<DashboardLayout>
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-        backgroundColor: Color(0xffEDF1F2),
+        backgroundColor: const Color(0xffEDF1F2),
         body: Stack(
           children: [
             Row(
               children: [
                 //TODO: Its depends if it is more than 700px
-                if (size.width >= 700) Sidebar(),
+                if (size.width >= 700) const Sidebar(),
 
                 Expanded(
                   child: Column(children: [
                     //Navbar
-                    Navbar(),
+                    const Navbar(),
                     Expanded(
                       child: Container(
                         child: widget.child,
@@ -61,7 +61,7 @@ class _DashboardLayoutState extends State<DashboardLayout>
                           if (SideMenuProvider.isOpen)
                             AnimatedOpacity(
                               opacity: SideMenuProvider.opacity.value,
-                              duration: Duration(milliseconds: 200),
+                              duration: const Duration(milliseconds: 200),
                               child: GestureDetector(
                                 onTap: (() => SideMenuProvider.closeMenu()),
                                 child: Container(
@@ -76,7 +76,7 @@ class _DashboardLayoutState extends State<DashboardLayout>
                               SideMenuProvider.movement.value,
                               0,
                             ),
-                            child: Sidebar(),
+                            child: const Sidebar(),
                           ),
                         ],
                       )),

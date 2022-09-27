@@ -26,7 +26,7 @@ class CategoriesDTS extends DataTableSource {
             children: [
               IconButton(
                 onPressed: () {
-                  print('editing ${categoria.nombre}');
+                  // print('editing ${categoria.nombre}');
                   showModalBottomSheet(
                       backgroundColor: Colors.transparent,
                       context: context,
@@ -34,13 +34,13 @@ class CategoriesDTS extends DataTableSource {
                             categoria: categoria,
                           ));
                 },
-                icon: Icon(Icons.edit_outlined),
+                icon: const Icon(Icons.edit_outlined),
                 color: Colors.blue,
               ),
               IconButton(
                 onPressed: () {
                   final dialog = AlertDialog(
-                    title: Text('Esta seguro que deseas eliminarlo ?'),
+                    title: const Text('Esta seguro que deseas eliminarlo ?'),
                     content: Text(
                         'Esta accion no se puede deshacer, borrar el registro ${categoria.nombre}?'),
                     actions: [
@@ -48,7 +48,7 @@ class CategoriesDTS extends DataTableSource {
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        child: Text('Cancelar'),
+                        child: const Text('Cancelar'),
                       ),
                       TextButton(
                         onPressed: () async {
@@ -57,7 +57,7 @@ class CategoriesDTS extends DataTableSource {
                           NotificationService.showSnackbarSuccess(
                               'Categoria ${categoria.nombre} eliminada');
                         },
-                        child: Text('Borrar'),
+                        child: const Text('Borrar'),
                       ),
                     ],
                   );
@@ -67,7 +67,7 @@ class CategoriesDTS extends DataTableSource {
                           dialog, // this function is to create the dialog
                       barrierDismissible: false);
                 },
-                icon: Icon(Icons.delete_outline),
+                icon: const Icon(Icons.delete_outline),
                 color: Colors.red,
               ),
             ],

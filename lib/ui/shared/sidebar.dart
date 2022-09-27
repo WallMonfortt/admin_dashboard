@@ -1,12 +1,10 @@
-import 'package:admin_dashboard/providers/auth_provider.dart';
-import 'package:admin_dashboard/providers/sidemenu_provider.dart';
+import 'package:admin_dashboard/providers/providers.dart';
 import 'package:admin_dashboard/router/router.dart';
 import 'package:admin_dashboard/services/navigation_service.dart';
 import 'package:admin_dashboard/ui/shared/widgets/logo.dart';
 import 'package:admin_dashboard/ui/shared/widgets/menu_item_custom.dart';
 import 'package:admin_dashboard/ui/shared/widgets/text_separator.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class Sidebar extends StatelessWidget {
   const Sidebar({Key? key}) : super(key: key);
@@ -25,13 +23,13 @@ class Sidebar extends StatelessWidget {
       height: double.infinity,
       decoration: buidBoxDecoration(),
       child: ListView(
-        physics: ClampingScrollPhysics(),
+        physics: const ClampingScrollPhysics(),
         children: [
-          Logo(),
-          SizedBox(
+          const Logo(),
+          const SizedBox(
             height: 50,
           ),
-          TextSeparator(
+          const TextSeparator(
               // This is a generic widget, in this case shows the text 'main'
               text: 'main'),
           MenuItemCustom(
@@ -75,10 +73,10 @@ class Sidebar extends StatelessWidget {
               navigateTo(Flurorouter.usersRoute),
             },
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
-          TextSeparator(
+          const TextSeparator(
               // This is a generic widget, in this case shows the text 'Ui elements'
               text: 'UI Elements'),
           MenuItemCustom(
@@ -103,10 +101,10 @@ class Sidebar extends StatelessWidget {
             icon: Icons.post_add_outlined,
             onPressed: () => navigateTo(Flurorouter.blankRoute),
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
           ),
-          TextSeparator(
+          const TextSeparator(
               // This is a generic widget, in this case shows the text 'Exit'
               text: 'Exit'),
           MenuItemCustom(

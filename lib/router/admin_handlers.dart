@@ -10,9 +10,9 @@ class AdminHandlers {
     final authProvider = Provider.of<AuthProvider>(context!);
 
     if (authProvider.authStatus == AuthStatus.unauthenticated) {
-      return LoginView();
+      return const LoginView();
     } else {
-      return DashboardView();
+      return const DashboardView();
     }
   });
 
@@ -20,9 +20,9 @@ class AdminHandlers {
     final authProvider = Provider.of<AuthProvider>(context!);
 
     if (authProvider.authStatus == AuthStatus.unauthenticated) {
-      return RegisterView();
+      return const RegisterView();
     } else {
-      return DashboardView();
+      return const DashboardView();
     }
   });
 }

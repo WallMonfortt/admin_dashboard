@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 class BackgroundTwitter extends StatelessWidget {
@@ -10,12 +8,12 @@ class BackgroundTwitter extends StatelessWidget {
     return Container(
       decoration: buildBoxDecoration(),
       child: Container(
-          constraints: BoxConstraints(maxWidth: 400),
-          child: Center(
+          constraints: const BoxConstraints(maxWidth: 400),
+          child: const Center(
               child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
+            padding: EdgeInsets.symmetric(horizontal: 30),
             child: Image(
-              image: AssetImage('twitter-white-logo.png'),
+              image: const AssetImage('twitter-white-logo.png'),
               width: 400,
             ),
           ))),
@@ -23,7 +21,7 @@ class BackgroundTwitter extends StatelessWidget {
   }
 
   BoxDecoration buildBoxDecoration() {
-    return BoxDecoration(
+    return const BoxDecoration(
         image: DecorationImage(
       image: AssetImage('twitter-bg.png'),
       fit: BoxFit.cover,

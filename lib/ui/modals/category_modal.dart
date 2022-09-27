@@ -1,11 +1,10 @@
 import 'package:admin_dashboard/models/category.dart';
-import 'package:admin_dashboard/providers/categories_provider.dart';
+import 'package:admin_dashboard/providers/providers.dart';
 import 'package:admin_dashboard/services/notifications_service.dart';
 import 'package:admin_dashboard/ui/buttons/custom_outlined_button.dart';
 import 'package:admin_dashboard/ui/inputs/custom_inputs.dart';
 import 'package:admin_dashboard/ui/labels/custom_labels.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class CategoryModal extends StatefulWidget {
   const CategoryModal({Key? key, this.categoria}) : super(key: key);
@@ -31,7 +30,7 @@ class _CategoryModalState extends State<CategoryModal> {
     final categoryProvider =
         Provider.of<CategoriesProvider>(context, listen: false);
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       height: 500,
       width: 500, // by default is the same as the screen
       decoration: buildBoxDecoration(),
@@ -51,8 +50,8 @@ class _CategoryModalState extends State<CategoryModal> {
                   color: Colors.white.withOpacity(0.3),
                 ))
           ]),
-          Divider(color: Colors.white),
-          SizedBox(height: 20),
+          const Divider(color: Colors.white),
+          const SizedBox(height: 20),
           TextFormField(
             initialValue: widget.categoria?.nombre ?? '',
             onChanged: (value) =>
@@ -61,10 +60,10 @@ class _CategoryModalState extends State<CategoryModal> {
                 hint: 'Nombre de la categoria',
                 label: 'Categoria',
                 icon: Icons.new_releases_outlined),
-            style: TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.white),
           ),
           Container(
-            margin: EdgeInsets.only(top: 30),
+            margin: const EdgeInsets.only(top: 30),
             alignment: Alignment.center,
             child: CustomOutlinedButton(
               onPressed: () async {
@@ -74,14 +73,14 @@ class _CategoryModalState extends State<CategoryModal> {
                     await categoryProvider.newCategory(
                         nombre); // this is to create a new category
                     NotificationService.showSnackbarSuccess(
-                        'Categoria ${nombre} creada');
+                        'Categoria $nombre creada');
                   } else {
                     // update
 
                     await categoryProvider.updateCategory(
                         id!, nombre); // this is to update a category
                     NotificationService.showSnackbarSuccess(
-                        'Categoria ${id} actualizada');
+                        'Categoria $id actualizada');
                   }
                 } catch (e) {
                   NotificationService.showSnackbarError(e.toString());
@@ -97,7 +96,7 @@ class _CategoryModalState extends State<CategoryModal> {
     );
   }
 
-  BoxDecoration buildBoxDecoration() => BoxDecoration(
+  BoxDecoration buildBoxDecoration() => const BoxDecoration(
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(20), topRight: Radius.circular(20)),
         color: Color(0xff0F2041),

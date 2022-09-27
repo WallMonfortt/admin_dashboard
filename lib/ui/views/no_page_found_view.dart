@@ -7,7 +7,7 @@ class NoPageFoundView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: ListView(
             // Is more flexible to show content
             physics: ClampingScrollPhysics(),
@@ -17,7 +17,7 @@ class NoPageFoundView extends StatelessWidget {
                 style: GoogleFonts.roboto(
                     fontSize: 30, fontWeight: FontWeight.w500),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Text(
                 'The page you are looking for does not exist',
                 style: GoogleFonts.roboto(

@@ -16,7 +16,7 @@ void main() async {
       .configurePrefs(); // local storage configuration, if we have a token, we'll navigate to dashboard
   CafeApi.configureDio(); // configure dio
   Flurorouter.configureRoutes();
-  runApp(AppState());
+  runApp(const AppState());
 }
 
 class AppState extends StatelessWidget {
@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
         // return DashboardLayout(child: child!);
         final authProvider = Provider.of<AuthProvider>(context);
         if (authProvider.authStatus == AuthStatus.checking) {
-          return SplashLayout();
+          return const SplashLayout();
         } else if (authProvider.authStatus == AuthStatus.unauthenticated) {
           return AuthLayout(child: child!);
         } else {
@@ -67,7 +67,7 @@ class MyApp extends StatelessWidget {
         }
       },
       theme: ThemeData.light().copyWith(
-          scrollbarTheme: ScrollbarThemeData().copyWith(
+          scrollbarTheme: const ScrollbarThemeData().copyWith(
               thumbColor: MaterialStateProperty.all(
         Colors.grey.withOpacity(0.5),
       ))),

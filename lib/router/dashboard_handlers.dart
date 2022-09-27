@@ -21,9 +21,9 @@ class DashboardHandlers {
         .setCurrentUrl(Flurorouter.dashboardRoute);
 
     if (authProvider.authStatus == AuthStatus.authenticated) {
-      return DashboardView();
+      return const DashboardView();
     } else {
-      return LoginView();
+      return const LoginView();
     }
   });
   static Handler icons = Handler(handlerFunc: (context, params) {
@@ -32,9 +32,9 @@ class DashboardHandlers {
         .setCurrentUrl(Flurorouter.iconsRoute);
 
     if (authProvider.authStatus == AuthStatus.authenticated) {
-      return IconView();
+      return const IconView();
     } else {
-      return LoginView();
+      return const LoginView();
     }
   });
   static Handler blank = Handler(handlerFunc: (context, params) {
@@ -43,9 +43,9 @@ class DashboardHandlers {
         .setCurrentUrl(Flurorouter.blankRoute);
 
     if (authProvider.authStatus == AuthStatus.authenticated) {
-      return BlankView();
+      return const BlankView();
     } else {
-      return LoginView();
+      return const LoginView();
     }
   });
 
@@ -55,9 +55,9 @@ class DashboardHandlers {
         .setCurrentUrl(Flurorouter.categoriesRoute);
 
     if (authProvider.authStatus == AuthStatus.authenticated) {
-      return CategoriesView();
+      return const CategoriesView();
     } else {
-      return LoginView();
+      return const LoginView();
     }
   });
 
@@ -68,9 +68,9 @@ class DashboardHandlers {
         .setCurrentUrl(Flurorouter.usersRoute);
 
     if (authProvider.authStatus == AuthStatus.authenticated) {
-      return UsersView();
+      return const UsersView();
     } else {
-      return LoginView();
+      return const LoginView();
     }
   });
 
@@ -84,10 +84,10 @@ class DashboardHandlers {
       if (params['uid']?.first != null) {
         return UserView(uid: params['uid']!.first);
       } else {
-        return UsersView();
+        return const UsersView();
       }
     } else {
-      return LoginView();
+      return const LoginView();
     }
   });
 }

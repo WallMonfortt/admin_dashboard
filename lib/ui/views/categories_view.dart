@@ -30,7 +30,7 @@ class _CategoriesViewState extends State<CategoriesView> {
   Widget build(BuildContext context) {
     final categorias = Provider.of<CategoriesProvider>(context).categorias;
     return Container(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: ListView(
             // Is more flexible to show content
             physics: const ClampingScrollPhysics(),
@@ -39,16 +39,17 @@ class _CategoriesViewState extends State<CategoriesView> {
                 'Categorias',
                 style: CustomLabels.h1,
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               PaginatedDataTable(
-                columns: [
+                columns: const [
                   DataColumn(label: Text('ID')),
                   DataColumn(label: Text('Categoria')),
                   DataColumn(label: Text('Creado po')),
                   DataColumn(label: Text('Acciones')),
                 ],
                 source: CategoriesDTS(categorias, context),
-                header: Text('Esta es una lista de las categorias disponibles'),
+                header: const Text(
+                    'Esta es una lista de las categorias disponibles'),
                 onRowsPerPageChanged: (value) {
                   setState(() {
                     _rowsPerPage = value ?? 10;
@@ -61,7 +62,7 @@ class _CategoriesViewState extends State<CategoriesView> {
                         showModalBottomSheet(
                             backgroundColor: Colors.transparent,
                             context: context,
-                            builder: (_) => CategoryModal(
+                            builder: (_) => const CategoryModal(
                                   categoria:
                                       null, // null because we are creating a new category and not editing one, this parameter is optional
                                 ));

@@ -9,80 +9,80 @@ class IconView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: ListView(
             // Is more flexible to show content
-            physics: ClampingScrollPhysics(),
+            physics: const ClampingScrollPhysics(),
             children: [
               Text(
                 'Icons view',
                 style: CustomLabels.h1,
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Wrap(
                 crossAxisAlignment: WrapCrossAlignment.start,
                 direction: Axis.horizontal,
-                children: [
+                children: const [
                   WhiteCard(
                       title: 'ac_unit_outlined',
+                      width: 170,
                       child: Center(
                         child: Icon(Icons.ac_unit_outlined),
-                      ),
-                      width: 170),
+                      )),
                   WhiteCard(
                       title: 'access_alarm_outlined',
+                      width: 170,
                       child: Center(
                         child: Icon(Icons.access_alarm_outlined),
-                      ),
-                      width: 170),
+                      )),
                   WhiteCard(
                       title: 'access_alarms_outlined',
+                      width: 170,
                       child: Center(
                         child: Icon(Icons.access_alarms_outlined),
-                      ),
-                      width: 170),
+                      )),
                   WhiteCard(
                       title: 'safety_check_outlined',
+                      width: 170,
                       child: Center(
                         child: Icon(Icons.safety_check_outlined),
-                      ),
-                      width: 170),
+                      )),
                   WhiteCard(
                       title: 'javascript_outlined',
+                      width: 170,
                       child: Center(
                         child: Icon(Icons.javascript_outlined),
-                      ),
-                      width: 170),
+                      )),
                   WhiteCard(
                       title: 'face_retouching_natural_outlined',
+                      width: 170,
                       child: Center(
                         child: Icon(Icons.face_retouching_natural_outlined),
-                      ),
-                      width: 170),
+                      )),
                   WhiteCard(
                       title: 'padding_outlined',
+                      width: 170,
                       child: Center(
                         child: Icon(Icons.padding_outlined),
-                      ),
-                      width: 170),
+                      )),
                   WhiteCard(
                       title: 'u_turn_left_outlined',
+                      width: 170,
                       child: Center(
                         child: Icon(Icons.u_turn_left_outlined),
-                      ),
-                      width: 170),
+                      )),
                   WhiteCard(
                       title: 'yard_outlined',
+                      width: 170,
                       child: Center(
                         child: Icon(Icons.yard_outlined),
-                      ),
-                      width: 170),
+                      )),
                   WhiteCard(
                       title: 'web_asset_outlined',
+                      width: 170,
                       child: Center(
                         child: Icon(Icons.web_asset_outlined),
-                      ),
-                      width: 170),
+                      )),
                 ],
               )
             ]));

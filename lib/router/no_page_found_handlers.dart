@@ -7,6 +7,6 @@ class NoPageFoundHandlers {
   static Handler noPageFound = Handler(handlerFunc: (context, params) {
     Provider.of<SideMenuProvider>(context!, listen: false)
         .setCurrentUrl('/404');
-    return NoPageFoundView();
+    return const NoPageFoundView();
   });
 }

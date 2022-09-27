@@ -45,10 +45,10 @@ class UserFormProvider extends ChangeNotifier {
 
     try {
       final resp = await CafeApi.put('/usuarios/${user!.uid}', data);
-      print(resp);
+      // print(resp);
       return true;
     } catch (e) {
-      print('Error in updateUser: $e');
+      // print('Error in updateUser: $e');
       return false;
     }
   }
@@ -60,7 +60,7 @@ class UserFormProvider extends ChangeNotifier {
       notifyListeners();
       return user;
     } catch (e) {
-      print('Error in uploadImage: $e');
+      // print('Error in uploadImage: $e');
       throw 'Error in uploadImage: $e';
     }
   }
