@@ -236,8 +236,14 @@ class _AvatarContainer extends StatelessWidget {
                                 var path = (await FilePicker.platform.pickFiles(
                                   type: FileType.custom,
                                   allowMultiple: false,
-                                  onFileLoading: (FilePickerStatus status) =>
-                                      print(status),
+                                  onFileLoading: (FilePickerStatus status) {
+                                    status == FilePickerStatus.picking
+                                        ? NotificationService.showBusyIndicator(
+                                            context)
+                                        : NotificationService
+                                            .showSnackbarSuccess(
+                                                'Imagen cargada');
+                                  },
                                   allowedExtensions: ['jpg', 'png', 'jpeg'],
                                 ))
                                     ?.files
@@ -246,6 +252,8 @@ class _AvatarContainer extends StatelessWidget {
                                 final res = await userFormProvider.uploadImage(
                                     '/uploads/usuarios/${user.uid}', file!);
                                 print(res.img);
+                                // Close the busy indicator
+                                Navigator.of(context).pop();
                               } on PlatformException catch (e) {
                                 print('Unsupported operation' + e.toString());
                               } catch (e) {
