@@ -194,6 +194,10 @@ class _AvatarContainer extends StatelessWidget {
     final userFormProvider = Provider.of<UserFormProvider>(
         context); // This is the user to show the information of the user
     final user = userFormProvider.user!;
+
+    final image = (user.img == null)
+        ? Image(image: Image.network('./assets/no-image.jpg').image)
+        : FadeInImage.assetNetwork(placeholder: 'loader.gif', image: user.img!);
     return WhiteCard(
       width: 250,
       child: Container(
@@ -210,10 +214,7 @@ class _AvatarContainer extends StatelessWidget {
                 child: Stack(
                   // Stack is used to overlap widgets
                   children: [
-                    ClipOval(
-                        child: Image(
-                            image:
-                                Image.network('./assets/no-image.jpg').image)),
+                    ClipOval(child: image),
                     Positioned(
                       bottom: 5,
                       right: 5,
@@ -253,7 +254,8 @@ class _AvatarContainer extends StatelessWidget {
                                     '/uploads/usuarios/${user.uid}', file!);
                                 print(res.img);
                                 // Close the busy indicator
-                                Navigator.of(context).pop();
+                                Navigator.of(context)
+                                    .pushNamed('/admin/users/${user.uid}');
                               } on PlatformException catch (e) {
                                 print('Unsupported operation' + e.toString());
                               } catch (e) {
