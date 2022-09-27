@@ -1,8 +1,7 @@
 import 'package:admin_dashboard/models/user.dart';
 import 'package:admin_dashboard/providers/user_form_provider.dart';
 import 'package:admin_dashboard/providers/users_provider.dart';
-import 'package:admin_dashboard/services/navigation_service.dart';
-import 'package:admin_dashboard/services/notifications_service.dart';
+import 'package:admin_dashboard/services/services.dart';
 import 'package:admin_dashboard/ui/inputs/custom_inputs.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:file_picker/file_picker.dart';
@@ -10,7 +9,7 @@ import 'package:flutter/material.dart';
 
 import 'package:admin_dashboard/ui/cards/white_card.dart';
 import 'package:admin_dashboard/ui/labels/custom_labels.dart';
-import 'package:flutter/services.dart';
+
 import 'package:provider/provider.dart';
 
 class UserView extends StatefulWidget {
